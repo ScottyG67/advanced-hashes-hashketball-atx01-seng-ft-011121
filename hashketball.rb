@@ -1,3 +1,5 @@
+require 'pry'
+
 # Write your code below game_hash
 def game_hash
   {
@@ -127,3 +129,130 @@ def game_hash
 end
 
 # Write code here
+
+def num_points_scored(player_name_request)
+  points_scored=nil
+  game_hash.each do |team,team_information|
+    #binding.pry
+    team_information[:players].each do |stat_key|
+      if stat_key[:player_name]==player_name_request
+        #binding.pry
+        points_scored = stat_key[:points]
+        break
+      end
+      #binding.pry
+    end
+  end
+  #binding.pry
+  
+points_scored  
+end
+
+def shoe_size(player_name_request)
+  size=nil
+  game_hash.each do |team,team_information|
+    #binding.pry
+    team_information[:players].each do |stat_key|
+      if stat_key[:player_name]==player_name_request
+        #binding.pry
+        size = stat_key[:shoe]
+        break
+      end
+      #binding.pry
+    end
+  end
+  #binding.pry
+  
+size  
+end  
+
+def team_colors(team_name_request)
+  colors = []
+  game_hash.each do |team,team_information|
+      if team_information[:team_name]==team_name_request
+        colors = team_information[:colors]
+        break
+      end
+  end
+colors  
+end
+
+def team_names
+  team_names_array = game_hash.each_with_object ([]) do |(team,team_information),names|
+    names << team_information[:team_name]
+  end
+end
+
+def player_numbers (team_name_request)
+  player_numbers_array = game_hash.each_with_object ([]) do |(team,team_information),numbers|
+    if team_information[:team_name] == team_name_request
+      team_information[:players].each do |stat_key|
+        numbers << stat_key[:number]
+      end
+    end
+  end
+end
+
+def player_stats (player_name_request)
+  stats ={}
+  game_hash.each do |team,team_information|
+    team_information[:players].each do |stat_key|
+      if stat_key[:player_name]==player_name_request
+        stats = stat_key
+        break
+      end
+    end
+  end
+ stats
+end
+
+def big_shoe_rebounds
+  shoe_rebounds=0
+  size = nil
+  size = game_hash.map {|team,team_information| team_information[:players].map {|stats2| stats2[:shoe]}}.flatten.max
+  #binding.pry
+  game_hash.each do |team,team_information|
+    #binding.pry
+    team_information[:players].each do |stats|
+      if stats[:shoe] == size
+        shoe_rebounds=stats[:rebounds]
+        break
+      end
+    end
+  end
+  #binding.pry
+  shoe_rebounds
+end
+
+def most_points_scored
+  name = nil
+  points = game_hash.map {|team,team_information| team_information[:players].map {|stats2| stats2[:points]}}.flatten.max
+  game_hash.each { |team,team_information| team_information[:players].each { |stats|
+      if stats[:points] == points
+        name=stats[:player_name]
+        break
+      end
+  }}
+  puts "#{name}, with #{points} points, scored the most points in the game"
+end
+
+def winning_team
+  name = nil
+  home = 0
+  away = 0
+  game_hash.each do|team,team_information|
+    home = game_hash[:home][:players].map {|stats2| stats2[:points]}.flatten.sum
+    away = game_hash[:away][:players].map {|stats2| stats2[:points]}.flatten.sum
+  end
+  if home > away
+    puts "#{game_hash[:home][:team_name]} won the game with #{home} points"
+  elsif home < away
+    puts "#{game_hash[:away][:team_name]} won the game with #{away} points"
+  else
+    puts "it was a tie"
+  end
+end
+
+#most_points_scored
+#winning_team
+    
