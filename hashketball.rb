@@ -240,10 +240,9 @@ def winning_team
   name = nil
   home = 0
   away = 0
-  game_hash.each do|team,team_information|
-    home = game_hash[:home][:players].map {|stats2| stats2[:points]}.flatten.sum
-    away = game_hash[:away][:players].map {|stats2| stats2[:points]}.flatten.sum
-  end
+  home = game_hash[:home][:players].map {|player_stats| player_stats[:points]}.flatten.sum 
+    #note .map ruturns an updated hash/array/value. .flatten converst all of the results for the enumerable (in this case player_stats[:points]) into an array and sum adds them together
+  away = game_hash[:away][:players].map {|player_stats| player_stats[:points]}.flatten.sum
   if home > away
     puts "#{game_hash[:home][:team_name]} won the game with #{home} points"
   elsif home < away
@@ -253,6 +252,4 @@ def winning_team
   end
 end
 
-#most_points_scored
-#winning_team
     
