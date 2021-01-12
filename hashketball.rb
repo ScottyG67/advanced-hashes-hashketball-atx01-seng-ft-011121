@@ -138,7 +138,6 @@ end
   
 
 def num_points_scored(player_name_request)
-
   points_scored=all_players.find { |player| player[:player_name] ==player_name_request}[:points]
 end
 
