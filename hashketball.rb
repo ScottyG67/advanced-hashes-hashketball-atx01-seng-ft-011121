@@ -116,7 +116,7 @@ def game_hash
           player_name: "Kemba Walker",
           number: 33,
           shoe: 15,
-          points: 33,#6,
+          points: 6,
           rebounds: 12,
           assists: 12,
           steals: 7,
@@ -222,12 +222,10 @@ def most_points_scored
   
   points = all_players.map {|stats2| stats2[:points]}.flatten.max
   high_scorers = all_players.select { |stats|stats[:points] == points}
-  binding.pry
   if high_scorers.length == 1
     name = high_scorers[:player_name]
   elsif high_scorers.length > 1
     name = high_scorers.map {|stats|stats[:player_name]}
-    binding.pry
   end
   puts "#{name}, with #{points} points, scored the most points in the game"
 end
