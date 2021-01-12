@@ -189,7 +189,7 @@ end
 def player_stats (player_name_request)
   stats ={}
 
-  binding.pry
+  #binding.pry
   all_players.each do |stat_key|
     if stat_key[:player_name]==player_name_request
       stats = stat_key
