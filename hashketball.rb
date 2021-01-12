@@ -227,10 +227,10 @@ def most_points_scored
   elsif high_scorers.length > 1
     name = high_scorers.map {|stats|stats[:player_name]} #produces an arry of names
   end
+  
   puts "#{name}, with #{points} points, scored the most points in the game"
 end
 
-most_points_scored
 
 def winning_team
   name = nil
