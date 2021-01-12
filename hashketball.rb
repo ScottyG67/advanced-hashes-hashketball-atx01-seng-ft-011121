@@ -130,31 +130,30 @@ end
 
 # Write code here
 
+
 def num_points_scored(player_name_request)
   points_scored=nil
+  game_hash[:home][:players].find do |player|
   game_hash.each do |team,team_information|
-    #binding.pry
     team_information[:players].each do |stat_key|
       if stat_key[:player_name]==player_name_request
-        #binding.pry
         points_scored = stat_key[:points]
         break
       end
-      #binding.pry
+
     end
   end
-  #binding.pry
-  
+
 points_scored  
 end
 
 def shoe_size(player_name_request)
   size=nil
   game_hash.each do |team,team_information|
-    #binding.pry
+
     team_information[:players].each do |stat_key|
       if stat_key[:player_name]==player_name_request
-        #binding.pry
+
         size = stat_key[:shoe]
         break
       end
