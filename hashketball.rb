@@ -131,12 +131,14 @@ end
 # Write code here
 
 def all_players
-  
+  home_player=game_hash[:home][:players]
+  away_player=game_hash[:away][:players]
+  home_player+away_player
+end
   
 
 def num_points_scored(player_name_request)
 
-  
   points_scored=all_players.find { |player| player[:player_name] ==player_name_request}[:points]
 end
 
