@@ -188,6 +188,8 @@ end
 
 def player_stats (player_name_request)
   stats ={}
+  all_players
+  binding.pry
   game_hash.each do |team,team_information|
     team_information[:players].each do |stat_key|
       if stat_key[:player_name]==player_name_request
@@ -209,7 +211,6 @@ def big_shoe_rebounds
       break
     end
   end
-  #binding.pry
   shoe_rebounds
 end
 
