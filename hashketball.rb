@@ -133,15 +133,19 @@ end
 
 def num_points_scored(player_name_request)
   points_scored=nil
-  game_hash[:home][:players].find do |player|
-  game_hash.each do |team,team_information|
-    team_information[:players].each do |stat_key|
-      if stat_key[:player_name]==player_name_request
-        points_scored = stat_key[:points]
-        break
-      end
+  player={}
+  player=game_hash[:home][:players].find do |player|
+    player[:name]==player_name_request
+  end
+  points_scored=player[:points]
+  #game_hash.each do |team,team_information|
+  #  team_information[:players].each do |stat_key|
+  #    if stat_key[:player_name]==player_name_request
+  #      points_scored = stat_key[:points]
+  #      break
+  #    end
 
-    end
+  #  end
   end
 
 points_scored  
