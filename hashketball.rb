@@ -220,7 +220,7 @@ end
 def most_points_scored
   name = nil
   
-  points = game_hash.map {|team,team_information| team_information[:players].map {|stats2| stats2[:points]}}.flatten.max
+  points = all_players.map {|stats2| stats2[:points]}}.flatten.max
   game_hash.each { |team,team_information| team_information[:players].each { |stats|
       if stats[:points] == points
         name=stats[:player_name]
