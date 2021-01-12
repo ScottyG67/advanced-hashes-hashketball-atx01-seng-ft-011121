@@ -130,6 +130,8 @@ end
 
 # Write code here
 
+def players
+  
 
 def num_points_scored(player_name_request)
   home_player=game_hash[:home][:players]
