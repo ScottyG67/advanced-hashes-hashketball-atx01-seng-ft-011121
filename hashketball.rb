@@ -138,9 +138,8 @@ def num_points_scored(player_name_request)
   away_player=game_hash[:away][:players]
   binding.pry
   all_players = home_player+away_player
-  all_players.find { |player| player[:player_name] ==player_name_request}
+  points_scored=all_players.find { |player| player[:player_name] ==player_name_request}[:points]
   binding.pry
-  points_scored=player[:points]
   #game_hash.each do |team,team_information|
   #  team_information[:players].each do |stat_key|
   #    if stat_key[:player_name]==player_name_request
