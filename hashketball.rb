@@ -225,7 +225,7 @@ def most_points_scored
   binding.pry
   if high_scorers.length = 1
     name = high_scorers[:player_name]
-  elsif high_scorers > 1
+  elsif high_scorers.length > 1
     name += high_scorers.map {|stats|stats[:player_name]}
     binding.pry
   end
