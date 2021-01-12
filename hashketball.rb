@@ -226,7 +226,7 @@ def most_points_scored
     stats[:points]=points
   end
   binding.pry
-  game_hash.each { |team,team_information| team_information[:players].each { |stats|
+  #game_hash.each { |team,team_information| team_information[:players].each { |stats|
       if stats[:points] == points
         name=stats[:player_name]
         break
