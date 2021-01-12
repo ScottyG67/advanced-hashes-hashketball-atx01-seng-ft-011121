@@ -130,31 +130,24 @@ end
 
 # Write code here
 
-def num_points_scored(player_name_request)
-  points_scored=nil
-  game_hash.each do |team,team_information|
-    #binding.pry
-    team_information[:players].each do |stat_key|
-      if stat_key[:player_name]==player_name_request
-        #binding.pry
-        points_scored = stat_key[:points]
-        break
-      end
-      #binding.pry
-    end
-  end
-  #binding.pry
+def all_players
+  home_player=game_hash[:home][:players]
+  away_player=game_hash[:away][:players]
+  home_player+away_player
+end
   
-points_scored  
+
+def num_points_scored(player_name_request)
+  points_scored=all_players.find { |player| player[:player_name] ==player_name_request}[:points]
 end
 
 def shoe_size(player_name_request)
   size=nil
   game_hash.each do |team,team_information|
-    #binding.pry
+
     team_information[:players].each do |stat_key|
       if stat_key[:player_name]==player_name_request
-        #binding.pry
+
         size = stat_key[:shoe]
         break
       end
@@ -195,12 +188,11 @@ end
 
 def player_stats (player_name_request)
   stats ={}
-  game_hash.each do |team,team_information|
-    team_information[:players].each do |stat_key|
-      if stat_key[:player_name]==player_name_request
-        stats = stat_key
-        break
-      end
+
+  all_players.each do |stat_key|
+    if stat_key[:player_name]==player_name_request
+      stats = stat_key
+      break
     end
   end
  stats
@@ -209,32 +201,30 @@ end
 def big_shoe_rebounds
   shoe_rebounds=0
   size = nil
-  size = game_hash.map {|team,team_information| team_information[:players].map {|stats2| stats2[:shoe]}}.flatten.max
-  #binding.pry
-  game_hash.each do |team,team_information|
-    #binding.pry
-    team_information[:players].each do |stats|
-      if stats[:shoe] == size
-        shoe_rebounds=stats[:rebounds]
-        break
-      end
+  size = all_players.map {|stats2| stats2[:shoe]}.flatten.max
+  all_players.each do |stats|
+    if stats[:shoe] == size
+      shoe_rebounds=stats[:rebounds]
+      break
     end
   end
-  #binding.pry
   shoe_rebounds
 end
 
 def most_points_scored
   name = nil
-  points = game_hash.map {|team,team_information| team_information[:players].map {|stats2| stats2[:points]}}.flatten.max
-  game_hash.each { |team,team_information| team_information[:players].each { |stats|
-      if stats[:points] == points
-        name=stats[:player_name]
-        break
-      end
-  }}
+  points = all_players.map {|stats2| stats2[:points]}.flatten.max
+  high_scorers = all_players.select { |stats|stats[:points] == points}
+  
+  if high_scorers.length == 1
+    name = high_scorers[0][:player_name]
+  elsif high_scorers.length > 1
+    name = high_scorers.map {|stats|stats[:player_name]} #produces an arry of names
+  end
+  
   puts "#{name}, with #{points} points, scored the most points in the game"
 end
+
 
 def winning_team
   name = nil
