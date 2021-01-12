@@ -188,14 +188,12 @@ end
 
 def player_stats (player_name_request)
   stats ={}
-  all_players
+
   binding.pry
-  game_hash.each do |team,team_information|
-    team_information[:players].each do |stat_key|
-      if stat_key[:player_name]==player_name_request
-        stats = stat_key
-        break
-      end
+  all_players.each do |stat_key|
+    if stat_key[:player_name]==player_name_request
+      stats = stat_key
+      break
     end
   end
  stats
