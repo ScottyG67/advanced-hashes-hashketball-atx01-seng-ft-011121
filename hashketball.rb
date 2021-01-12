@@ -221,10 +221,7 @@ def most_points_scored
   name = nil
   
   points = all_players[:points].flatten.max
-  high_score = all_players.select do |stats|
-    binding.pry
-    stats[:points]=points
-  end
+  high_score = all_players.select {|players| players[:points]=points}
   binding.pry
 
   puts "#{name}, with #{points} points, scored the most points in the game"
