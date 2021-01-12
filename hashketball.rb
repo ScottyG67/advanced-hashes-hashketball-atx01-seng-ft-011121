@@ -221,9 +221,11 @@ def most_points_scored
   name = nil
   
   points = all_players[:points].flatten.max
-  all_players.select do |stats|
+  high_score = all_players.select do |stats|
     binding.pry
+    stats[:points]=points
   end
+  binding.pry
   game_hash.each { |team,team_information| team_information[:players].each { |stats|
       if stats[:points] == points
         name=stats[:player_name]
