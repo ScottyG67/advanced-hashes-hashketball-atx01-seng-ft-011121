@@ -132,14 +132,11 @@ end
 
 
 def num_points_scored(player_name_request)
-  points_scored=nil
-  player={}
   home_player=game_hash[:home][:players]
   away_player=game_hash[:away][:players]
   all_players = home_player+away_player
   
   points_scored=all_players.find { |player| player[:player_name] ==player_name_request}[:points]
-
 end
 
 def shoe_size(player_name_request)
