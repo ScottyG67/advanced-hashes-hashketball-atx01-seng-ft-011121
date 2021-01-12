@@ -202,10 +202,8 @@ end
 def big_shoe_rebounds
   shoe_rebounds=0
   size = nil
-  size = game_hash.map {|team,team_information| team_information[:players].map {|stats2| stats2[:shoe]}}.flatten.max
-  #binding.pry
+  size = all_players.map {|stats2| stats2[:shoe]}}.flatten.max
   game_hash.each do |team,team_information|
-    #binding.pry
     team_information[:players].each do |stats|
       if stats[:shoe] == size
         shoe_rebounds=stats[:rebounds]
