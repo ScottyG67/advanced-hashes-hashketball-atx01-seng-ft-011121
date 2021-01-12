@@ -137,6 +137,7 @@ def num_points_scored(player_name_request)
   player=game_hash[:home][:players].find do |player|
     player[:name]==player_name_request
   end
+  binding.pry
   points_scored=player[:points]
   #game_hash.each do |team,team_information|
   #  team_information[:players].each do |stat_key|
