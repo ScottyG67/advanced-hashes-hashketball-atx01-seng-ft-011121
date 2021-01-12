@@ -226,7 +226,7 @@ def most_points_scored
   if high_scorers.length == 1
     name = high_scorers[:player_name]
   elsif high_scorers.length > 1
-    name += high_scorers.map {|stats|stats[:player_name]}
+    name = high_scorers.map {|stats|stats[:player_name]}
     binding.pry
   end
   puts "#{name}, with #{points} points, scored the most points in the game"
