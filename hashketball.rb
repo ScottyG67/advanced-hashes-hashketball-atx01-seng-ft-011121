@@ -222,6 +222,7 @@ def most_points_scored
   
   points = all_players.map {|stats2| stats2[:points]}.flatten.max
   high_scorers = all_players.select { |stats|stats[:points] == points}
+  binding.pry
   if high_scorers.length = 1
     name = high_scorers[:player_name]
   elsif high_scorers > 1
