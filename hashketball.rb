@@ -219,7 +219,7 @@ end
 
 def most_points_scored
   name = nil
-  
+  binding.pry
   points = all_players[:points].flatten.max
   high_score = all_players.select {|players| players[:points]=points}
   binding.pry
