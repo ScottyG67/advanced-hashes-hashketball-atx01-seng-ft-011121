@@ -227,7 +227,7 @@ def most_points_scored
         name=stats[:player_name]
         break
       end
-  }}
+  }
   puts "#{name}, with #{points} points, scored the most points in the game"
 end
 
