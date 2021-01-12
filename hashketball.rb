@@ -230,6 +230,8 @@ def most_points_scored
   puts "#{name}, with #{points} points, scored the most points in the game"
 end
 
+most_points_scored
+
 def winning_team
   name = nil
   home = 0
