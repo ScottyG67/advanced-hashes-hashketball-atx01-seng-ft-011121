@@ -221,13 +221,8 @@ def most_points_scored
   name = nil
   
   points = all_players.map {|stats2| stats2[:points]}.flatten.max
-  all_players.each { |stats|
-  #binding.pry
-      if stats[:points] == points
-        name=stats[:player_name]
-        break
-      end
-  }
+  high_scorers = all_players.select { |stats|stats[:points] == points}
+  binding.pry
   puts "#{name}, with #{points} points, scored the most points in the game"
 end
 
