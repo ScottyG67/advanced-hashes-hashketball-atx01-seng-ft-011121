@@ -204,10 +204,9 @@ def big_shoe_rebounds
   size = nil
   size = all_players.map {|stats2| stats2[:shoe]}.flatten.max
   all_players.each do |stats|
-      if stats[:shoe] == size
-        shoe_rebounds=stats[:rebounds]
-        break
-      end
+    if stats[:shoe] == size
+      shoe_rebounds=stats[:rebounds]
+      break
     end
   end
   #binding.pry
